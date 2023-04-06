@@ -69,7 +69,6 @@ public class MainBank {
 				switch (option) {
 				case 1:
 					
-					
 					//Compact statement to accept user input, open account, and print the result including the account number
 					ui.print(MSG_ACCOUNT_OPENED,
 							new Object[] { Bank.openCheckingAccount(ui.readToken(MSG_FIRST_NAME),
