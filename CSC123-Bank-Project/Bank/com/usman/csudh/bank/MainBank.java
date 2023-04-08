@@ -17,8 +17,8 @@ public class MainBank {
 	public static final String MSG_ACCOUNT_OPENED = "%nAccount opened, account number is: %s%n%n";
 	public static final String MSG_ACCOUNT_CLOSED = "%nAccount number %s has been closed, balance is %s%n%n";
 	public static final String MSG_ACCOUNT_NOT_FOUND = "%nAccount number %s not found! %n%n";
-	public static final String MSG_FIRST_NAME = "Enter First name:  ";
-	public static final String MSG_LAST_NAME = "Enter Last name:  ";
+	public static final String MSG_FIRST_NAME = "Enter first name:  ";
+	public static final String MSG_LAST_NAME = "Enter last name:  ";
 	public static final String MSG_SSN = "Enter Social Security Number:  ";
 	public static final String MSG_ACCOUNT_NAME = "Enter account name:  ";
 	public static final String MSG_ACCOUNT_OD_LIMIT = "Enter overdraft limit:  ";
