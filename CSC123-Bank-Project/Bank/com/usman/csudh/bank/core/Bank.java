@@ -1,13 +1,19 @@
 package com.usman.csudh.bank.core;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
+	
+	private static Map<String, Double> exchangeRates = new HashMap<>();
 	
 	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit) {
 		Customer c=new Customer(firstName,lastName, ssn);
@@ -73,11 +79,29 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 				
-	public static void exchange(int accountnum) {
-		int a;
-		int b =1;
-		a = b - accountnum;
-	return;
+	public static Map<String, Double> exchange(String Newfilepath) {
+		
+		 File exfile = new File(Newfilepath);
+		 try {
+		 Scanner Keyboard = new Scanner(exfile);
+		 
+		 while (Keyboard.hasNextLine()) {
+			 String line = Keyboard.nextLine();
+	         String[] parts = line.split(",");
+	         
+	         if (parts.length == 3) {
+	        	 String Code = parts[0].trim();
+	        	 String Name = parts[1].trim();
+	        	 Double exchangeRate = Double.parseDouble(parts[2].trim());
+	        	  exchangeRates.put(Code, exchangeRate);
+	         }
+		 }
+        
+		 }catch(FileNotFoundException e) {
+			 System.out.println("Currency file could not be loaded, Currency Coversion Service and Foreign Currency accounts are not avaliable ");
+		 }
+		
+	return exchangeRates;
 	}
 	
 	
