@@ -133,6 +133,7 @@ public class MainBank {
 					
 				case 7:
 					Bank.exchange("exchange-rate.csv");
+					System.out.println("code: ");
 					break;
 
 				case 8:
