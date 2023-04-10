@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>exchange-rate.csv</name>
+			<type>1</type>
+			<location>C:/Users/Pedro Nunez/Downloads/exchange-rate.csv</location>
+		</link>
+	</linkedResources>
 </projectDescription>
