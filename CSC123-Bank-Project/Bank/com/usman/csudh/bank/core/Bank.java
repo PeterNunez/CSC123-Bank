@@ -73,6 +73,12 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 				
+	public static void exchange(int accountnum) {
+		int a;
+		int b =1;
+		a = b - accountnum;
+	return;
+	}
 	
 	
 	
