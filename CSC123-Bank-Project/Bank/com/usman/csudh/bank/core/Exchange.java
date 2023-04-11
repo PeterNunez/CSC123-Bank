@@ -7,8 +7,21 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Exchange {
+	
+	private String Code;
+	private String Name;
+	private double exchangeRate;
+	
+	public Exchange(String Code, String Name, double exchangeRate) {
+		super();
+		Code = this.Code;
+		Name = this.Name;
+		this.exchangeRate = exchangeRate;
+	}
 
-	public static Map<String, Double> exchange(String Newfilepath) throws FileNotFoundException{
+
+
+	public Map<String, Double> Newexchange(String Newfilepath) throws FileNotFoundException{
 		 Map<String, Double> exchangeRates = new HashMap<>();
 		 File exfile = new File(Newfilepath);
 		 try {
@@ -19,9 +32,9 @@ public class Exchange {
 	         String[] parts = line.split(",");
 	         
 	         if (parts.length == 3) {
-	        	 String Code = parts[0].trim();
-	        	 String Name = parts[1].trim();
-	        	 Double exchangeRate = Double.parseDouble(parts[2].trim());
+	        	  Code = parts[0].trim();
+	        	  Name = parts[1].trim();
+	        	  exchangeRate = Double.parseDouble(parts[2].trim());
 	        	  exchangeRates.put(Code, exchangeRate);
 	         }
 		 }

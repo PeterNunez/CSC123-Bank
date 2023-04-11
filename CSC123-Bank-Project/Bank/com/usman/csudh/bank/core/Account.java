@@ -12,6 +12,7 @@ public class Account implements Serializable {
 	private String accountName;
 	private Customer accountHolder;
 	private ArrayList<Transaction> transactions;
+	private Exchange Newexchnage;
 	
 	private boolean open=true;
 	private int accountNumber;

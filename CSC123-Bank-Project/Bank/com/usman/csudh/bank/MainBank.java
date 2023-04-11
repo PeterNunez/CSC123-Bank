@@ -7,6 +7,7 @@ import java.util.Map;
 import com.usman.csudh.bank.core.Account;
 import com.usman.csudh.bank.core.AccountClosedException;
 import com.usman.csudh.bank.core.Bank;
+import com.usman.csudh.bank.core.Exchange;
 import com.usman.csudh.bank.core.InsufficientBalanceException;
 import com.usman.csudh.bank.core.NoSuchAccountException;
 import com.usman.csudh.util.UIManager;
@@ -134,8 +135,7 @@ public class MainBank {
 					
 				case 7:
 					//Bank reader = new Bank();
-					Map<String, Double> exchangeRates = Bank.exchange("exchange-rate.csv");
-					System.out.println("Currency Code: "+exchangeRates.put("Code", null));
+					Map<String, Double> exchangeRates = 
 					System.out.println("code: ");
 					break;
 
