@@ -13,7 +13,6 @@ public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
 	
-	private static Map<String, Double> exchangeRates = new HashMap<>();
 	
 	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit) {
 		Customer c=new Customer(firstName,lastName, ssn);
@@ -79,7 +78,7 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 				
-	public static Map<String, Double> exchange(String Newfilepath) {
+	public static Map<String, Double> exchange(String Newfilepath) throws FileNotFoundException{
 		 Map<String, Double> exchangeRates = new HashMap<>();
 		 File exfile = new File(Newfilepath);
 		 try {

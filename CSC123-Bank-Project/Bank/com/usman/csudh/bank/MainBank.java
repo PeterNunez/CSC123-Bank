@@ -2,6 +2,7 @@ package com.usman.csudh.bank;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 
 import com.usman.csudh.bank.core.Account;
 import com.usman.csudh.bank.core.AccountClosedException;
@@ -132,7 +133,9 @@ public class MainBank {
 					break;
 					
 				case 7:
-					Bank.exchange("exchange-rate.csv");
+					//Bank reader = new Bank();
+					Map<String, Double> exchangeRates = Bank.exchange("exchange-rate.csv");
+					System.out.println("Currency Code: "+exchangeRates.put("Code", null));
 					System.out.println("code: ");
 					break;
 
