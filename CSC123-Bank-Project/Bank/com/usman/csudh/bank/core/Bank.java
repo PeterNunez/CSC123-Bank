@@ -80,7 +80,7 @@ public class Bank {
 	}
 				
 	public static Map<String, Double> exchange(String Newfilepath) {
-		
+		 Map<String, Double> exchangeRates = new HashMap<>();
 		 File exfile = new File(Newfilepath);
 		 try {
 		 Scanner Keyboard = new Scanner(exfile);
