@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Bank/com/usman/csudh/bank/exchange-rate.csv</name>
+			<type>1</type>
+			<location>C:/Users/Pedro Nunez/Downloads/exchange-rate.csv</location>
+		</link>
+		<link>
 			<name>Bank/com/usman/csudh/bank/core/exchange-rate.csv</name>
 			<type>1</type>
 			<location>C:/Users/Pedro Nunez/Downloads/exchange-rate.csv</location>

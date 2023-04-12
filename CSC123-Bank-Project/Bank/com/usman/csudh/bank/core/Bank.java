@@ -12,9 +12,15 @@ import java.util.TreeMap;
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
-	private static Exchange NEWechnage;
+	private static Map<String, Double> exchangeRates = new HashMap<String, Double>();
 	
 	
+	
+	public static Exchange exchange(String Code, String Name, double exchangeRate) throws FileNotFoundException {
+		Exchange e = new Exchange(Code,Name,exchangeRate);
+		exchangeRates.put(Code, exchangeRate);
+		return e;
+	}
 	
 	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit) {
 		Customer c=new Customer(firstName,lastName, ssn);
@@ -78,13 +84,6 @@ public class Bank {
 	public static void printAccountTransactions(int accountNumber, OutputStream out) throws IOException,NoSuchAccountException{
 		
 		lookup(accountNumber).printTransactions(out);
-	}
-				
-	public static Map<String, Double> ex(String firstfile) throws FileNotFoundException {
-		
-		Bank.NEWechnage.Newexchange(firstfile);
-		
-		return null;
 	}
 	
 	

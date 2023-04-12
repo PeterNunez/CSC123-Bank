@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.usman.csudh.bank.core.Account;
 import com.usman.csudh.bank.core.AccountClosedException;
@@ -134,10 +135,14 @@ public class MainBank {
 					break;
 					
 				case 7:
-					Exchange reader = new Exchange();
+					Exchange reader = new Exchange(null, null, 0.0);
 					reader.Newexchange("exchange-rate.csv");
-					//Map<String, Double> exchangeRates = reader.Newexchange("exchange-rate.csv");
-					System.out.println("Code is: ");
+					Scanner Keyboard = new Scanner(System.in);
+					
+					//reader.Newexchange("exchange-rate.csv");
+	
+					System.out.print("Code is: ");
+					reader.setCode(Keyboard.nextLine());
 					
 					break;
 
