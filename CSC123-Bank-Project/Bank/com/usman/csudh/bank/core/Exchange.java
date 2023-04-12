@@ -34,36 +34,42 @@ public class Exchange {
 		return exchangeRate;
 	}
 
-	public void setCode(String code) {
-		Code = code;
+	public void setCode(String Code) {
+		this.Code = Code;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public void setName(String Name) {
+		this.Name = Name;
 	}
-
+	
 	public void setExchangeRate(double exchangeRate) {
 		this.exchangeRate = exchangeRate;
 	}
-	public static HashMap<String, Double> Newexchange(String Newfilepath) throws IOException {
+	
+	@Override
+	public String toString() {
+		return  Code+","+Name+","+exchangeRate;
+	}
+
+	public HashMap<String, Double> Newexchange(String Newfilepath) throws IOException {
 		 HashMap<String, Double> exchangeRates = new HashMap<>();
-		 Scanner Keyboard = new Scanner(System.in);
-		 try (BufferedReader a = new BufferedReader(new FileReader(Newfilepath)) {{
-			 a.readLine();
-			 String line;
-			 while((line = a.readLine()) !=null) {
+	
+		 try {
+		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
+			 String line = "";
+			 while((line = br.readLine()) !=null) {
 			 String[] data = line.split(",");
-			 String Code = data[0];
-			 String Name = data[1];
-			 Double rates = Double.parseDouble(data[2]);
-			 exchangeRates.put(Code, rates);
-			 }
-		 }
+			 this.Code = data[0];
+			 this.Name = data[1];
+			 this.exchangeRate = Double.parseDouble(data[2]);
+			 exchangeRates.put(Code, exchangeRate);
 			 
-       
-		 }catch(FileNotFoundException b)) {
-			
+			 }
+			 
+		 }catch(FileNotFoundException b) {
 			 System.out.println("Currency file could not be loaded, Currency Coversion Service and Foreign Currency accounts are not avaliable ");
+		 }catch(IOException e) {
+			 e.printStackTrace();
 		 }
 		 
 	return exchangeRates;

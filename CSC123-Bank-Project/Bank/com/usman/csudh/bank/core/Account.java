@@ -84,7 +84,7 @@ public class Account implements Serializable {
 	}
 
 	public String toString() {
-		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+ " : "+getBalance()+" : "+(open?"Account Open":"Account Closed");
+		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+ " : "+NEWexchange.getCode()+" : "+getBalance()+" : "+(open?"Account Open":"Account Closed");
 		return aName;
 	}
 	 

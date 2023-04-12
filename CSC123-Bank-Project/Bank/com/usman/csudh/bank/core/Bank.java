@@ -12,11 +12,11 @@ import java.util.TreeMap;
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
-	private static Map<String, Double> exchangeRates = new HashMap<String, Double>();
+	private Map<String, Double> exchangeRates = new HashMap<String, Double>();
 	
 	
 	
-	public static Exchange exchange(String Code, String Name, double exchangeRate) throws FileNotFoundException {
+	public Exchange exchange(String Code, String Name, double exchangeRate) throws FileNotFoundException {
 		Exchange e = new Exchange(Code,Name,exchangeRate);
 		exchangeRates.put(Code, exchangeRate);
 		return e;

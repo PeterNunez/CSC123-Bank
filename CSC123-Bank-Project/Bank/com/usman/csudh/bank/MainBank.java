@@ -33,7 +33,7 @@ public class MainBank {
 
 	//Declare main menu and prompt to accept user input
 	public static final String[] menuOptions = { "Open Checking Account%n","Open Saving Account%n", "List Accounts%n","View Statement%n", "Deposit Funds%n", "Withdraw Funds%n",
-			"Foreign Exchange%n","Close an Account%n", "Exit%n" };
+			"Currency Conversion%n","Foreign Exchange%n","Close an Account%n", "Exit%n" };
 	public static final String MSG_PROMPT = "%nEnter choice: ";
 
 	
@@ -69,6 +69,7 @@ public class MainBank {
 			do {
 				option = ui.getMainOption(); //Render main menu
 
+				Exchange reader = new Exchange(null, null, 0.0);
 				switch (option) {
 				case 1:
 					
@@ -135,18 +136,40 @@ public class MainBank {
 					break;
 					
 				case 7:
-					Exchange reader = new Exchange(null, null, 0.0);
-					reader.Newexchange("exchange-rate.csv");
-					Scanner Keyboard = new Scanner(System.in);
 					
-					//reader.Newexchange("exchange-rate.csv");
+					System.out.print("The currency you are selling: ");
+					
+					System.out.print("The amount you are seeling: ");
+					
+					System.out.print("The currency you are buying: ");
+					
+					System.out.println("The exchange rate is " + " and you will get");
+					break;
+					
+				case 8:
+					//Exchange reader = new Exchange(null, null, 0.0);
+					reader.Newexchange("C:/Users/Pedro Nunez/Downloads/exchange-rate.csv");
+					Scanner Keyboard = new Scanner(System.in);
 	
-					System.out.print("Code is: ");
+					System.out.print("Currency Code: ");
 					reader.setCode(Keyboard.nextLine());
 					
+					System.out.print("Name: ");
+					reader.setName(Keyboard.nextLine());
+					
+					System.out.print("Exchange Rate: ");
+					reader.setExchangeRate(Keyboard.nextDouble());
+					//System.out.println(reader.toString());
+					if(reader.getCode() == "CAD") {
+					double newcode = 1/reader.getExchangeRate();
+					System.out.printf("%.2f",newcode);
+					}else {
+					double newcode2 = reader.getExchangeRate()*0.7317;
+					System.out.printf("%.2f\n",newcode2);
+					}
 					break;
 
-				case 8:
+				case 9:
 					//find account and close it
 					
 					try {
