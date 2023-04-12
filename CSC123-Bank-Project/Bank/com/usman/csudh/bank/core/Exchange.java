@@ -8,16 +8,21 @@ import java.util.Scanner;
 
 public class Exchange {
 	
-	private String Code;
-	private String Name;
-	private double exchangeRate;
+	//private String Code;
+	//private String Name;
+	//private double exchangeRate;
 	
-	public Exchange(String Code, String Name, double exchangeRate) {
-		super();
-		Code = this.Code;
-		Name = this.Name;
-		this.exchangeRate = exchangeRate;
-	}
+	//public Exchange(String Code, String Name, double exchangeRate) {
+		//super();
+		//Code = this.Code;
+		//Name = this.Name;
+		//this.exchangeRate = exchangeRate;
+	//}
+
+	
+
+
+	
 
 
 
@@ -32,9 +37,9 @@ public class Exchange {
 	         String[] parts = line.split(",");
 	         
 	         if (parts.length == 3) {
-	        	  Code = parts[0].trim();
-	        	  Name = parts[1].trim();
-	        	  exchangeRate = Double.parseDouble(parts[2].trim());
+	        	  String Code = parts[0].trim();
+	        	  String Name = parts[1].trim();
+	        	 Double exchangeRate = Double.parseDouble(parts[2].trim());
 	        	  exchangeRates.put(Code, exchangeRate);
 	         }
 		 }

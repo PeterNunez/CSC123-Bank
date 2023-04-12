@@ -12,6 +12,8 @@ import java.util.TreeMap;
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
+	private static Exchange NEWechnage;
+	
 	
 	
 	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit) {
@@ -78,10 +80,12 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 				
-	public static void ex(String firstfile) {
-		accounts.
+	public static Map<String, Double> ex(String firstfile) throws FileNotFoundException {
+		
+		Bank.NEWechnage.Newexchange(firstfile);
+		
+		return null;
 	}
-	
 	
 	
 	

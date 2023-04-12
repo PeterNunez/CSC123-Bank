@@ -134,9 +134,11 @@ public class MainBank {
 					break;
 					
 				case 7:
-					//Bank reader = new Bank();
-					Map<String, Double> exchangeRates = 
-					System.out.println("code: ");
+					Exchange reader = new Exchange();
+					reader.Newexchange("exchange-rate.csv");
+					//Map<String, Double> exchangeRates = reader.Newexchange("exchange-rate.csv");
+					System.out.println("Code is: ");
+					
 					break;
 
 				case 8:

@@ -12,7 +12,6 @@ public class Account implements Serializable {
 	private String accountName;
 	private Customer accountHolder;
 	private ArrayList<Transaction> transactions;
-	private Exchange Newexchnage;
 	
 	private boolean open=true;
 	private int accountNumber;
@@ -22,6 +21,7 @@ public class Account implements Serializable {
 		accountHolder=customer;
 		transactions=new ArrayList<Transaction>();
 		accountNumber=UniqueCounter.nextValue();
+		
 	}
 	
 	public String getAccountName() {
