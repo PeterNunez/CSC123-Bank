@@ -17,10 +17,10 @@ public class Account implements Serializable {
 	private boolean open=true;
 	private int accountNumber;
 
-	protected Account(String name, Customer customer) {
+	protected Account(String name, Customer customer, Exchange exchange) {
 		accountName=name;
 		accountHolder=customer;
-		//NEWexchange=Exchange;
+		NEWexchange=exchange;
 		transactions=new ArrayList<Transaction>();
 		accountNumber=UniqueCounter.nextValue();
 		
@@ -33,6 +33,11 @@ public class Account implements Serializable {
 
 	public Customer getAccountHolder() {
 		return accountHolder;
+	}
+
+	
+	public Exchange getNEWexchange() {
+		return NEWexchange;
 	}
 
 	public double getBalance() {
@@ -84,7 +89,7 @@ public class Account implements Serializable {
 	}
 
 	public String toString() {
-		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+ " : "+NEWexchange.getCode()+" : "+getBalance()+" : "+(open?"Account Open":"Account Closed");
+		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+ " : "+NEWexchange.toString()+" : "+getBalance()+" : "+(open?"Account Open":"Account Closed");
 		return aName;
 	}
 	 

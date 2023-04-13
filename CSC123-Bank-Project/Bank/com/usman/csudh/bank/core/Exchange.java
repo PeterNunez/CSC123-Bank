@@ -15,11 +15,11 @@ public class Exchange {
 	private String Name;
 	private double exchangeRate;
 	
-	public Exchange(String Code, String Name, double exchangeRate) {
+	public Exchange(String Code) {
 		super();
 		Code = this.Code;
-		Name = this.Name;
-		exchangeRate = this.exchangeRate;
+		//Name = this.Name;
+		//exchangeRate = this.exchangeRate;
 	}
 
 	public String getCode() {
@@ -48,7 +48,7 @@ public class Exchange {
 	
 	@Override
 	public String toString() {
-		return  Code+","+Name+","+exchangeRate;
+		return  Code;
 	}
 
 	public HashMap<String, Double> Newexchange(String Newfilepath) throws IOException {
@@ -59,9 +59,9 @@ public class Exchange {
 			 String line = "";
 			 while((line = br.readLine()) !=null) {
 			 String[] data = line.split(",");
-			 this.Code = data[0];
-			 this.Name = data[1];
-			 this.exchangeRate = Double.parseDouble(data[2]);
+			 Code = data[0];
+			 Name = data[1];
+			 exchangeRate = Double.parseDouble(data[2]);
 			 exchangeRates.put(Code, exchangeRate);
 			 
 			 }

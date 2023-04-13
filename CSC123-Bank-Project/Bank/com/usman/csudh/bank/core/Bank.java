@@ -12,27 +12,29 @@ import java.util.TreeMap;
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
-	private Map<String, Double> exchangeRates = new HashMap<String, Double>();
+	private static Map<String, Double> exchangeRates = new HashMap<String, Double>();
 	
 	
 	
-	public Exchange exchange(String Code, String Name, double exchangeRate) throws FileNotFoundException {
-		Exchange e = new Exchange(Code,Name,exchangeRate);
-		exchangeRates.put(Code, exchangeRate);
+	public static Exchange exchange(String Code) throws FileNotFoundException {
+		Exchange e = new Exchange(Code);
+		//exchangeRates.put(Code);
 		return e;
 	}
 	
-	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit) {
+	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit,String Code ) {
 		Customer c=new Customer(firstName,lastName, ssn);
-		Account a=new CheckingAccount(c,overdraftLimit);
+		Exchange e = new Exchange(Code);
+		Account a=new CheckingAccount(c,overdraftLimit, e);
 		accounts.put(a.getAccountNumber(), a);
 		return a;
 		
 	}
 	
-	public static Account openSavingAccount(String firstName, String lastName, String ssn) {
+	public static Account openSavingAccount(String firstName, String lastName, String ssn, String Code) {
 		Customer c=new Customer(firstName,lastName, ssn);
-		Account a=new SavingAccount(c);
+		Exchange e = new Exchange(Code);
+		Account a=new SavingAccount(c, e);
 		accounts.put(a.getAccountNumber(), a);
 		return a;
 		

@@ -20,6 +20,12 @@ public class MainBank {
 	public static final String MSG_ACCOUNT_OPENED = "%nAccount opened, account number is: %s%n%n";
 	public static final String MSG_ACCOUNT_CLOSED = "%nAccount number %s has been closed, balance is %s%n%n";
 	public static final String MSG_ACCOUNT_NOT_FOUND = "%nAccount number %s not found! %n%n";
+	
+	public static final String MSG_ACCOUNT_CURRENCY ="Account Currency:  ";
+	public static final String MSG_CODE = "Currency Code:  ";
+	public static final String MSG_NAME ="Name:  ";
+	public static final String MSG_EXCHANGERATE = "Exchange Rate:  ";
+	
 	public static final String MSG_FIRST_NAME = "Enter first name:  ";
 	public static final String MSG_LAST_NAME = "Enter last name:  ";
 	public static final String MSG_SSN = "Enter Social Security Number:  ";
@@ -69,7 +75,6 @@ public class MainBank {
 			do {
 				option = ui.getMainOption(); //Render main menu
 
-				Exchange reader = new Exchange(null, null, 0.0);
 				switch (option) {
 				case 1:
 					
@@ -77,7 +82,7 @@ public class MainBank {
 					ui.print(MSG_ACCOUNT_OPENED,
 							new Object[] { Bank.openCheckingAccount(ui.readToken(MSG_FIRST_NAME),
 									ui.readToken(MSG_LAST_NAME), ui.readToken(MSG_SSN),
-									ui.readDouble(MSG_ACCOUNT_OD_LIMIT)).getAccountNumber() });
+									ui.readDouble(MSG_ACCOUNT_OD_LIMIT), ui.readToken(MSG_ACCOUNT_CURRENCY)).getAccountNumber() });
 					break;
 				case 2:
 					
@@ -85,7 +90,7 @@ public class MainBank {
 					ui.print(MSG_ACCOUNT_OPENED,
 							new Object[] { Bank
 									.openSavingAccount(ui.readToken(MSG_FIRST_NAME),
-											ui.readToken(MSG_LAST_NAME), ui.readToken(MSG_SSN))
+											ui.readToken(MSG_LAST_NAME), ui.readToken(MSG_SSN),ui.readToken(MSG_ACCOUNT_CURRENCY))
 									.getAccountNumber() });
 					break;
 
@@ -136,18 +141,18 @@ public class MainBank {
 					break;
 					
 				case 7:
+					Scanner s = new Scanner(System.in);
+					System.out.println("The currency you are selling: ");
 					
-					System.out.print("The currency you are selling: ");
+					System.out.println("The amount you are seeling: ");
 					
-					System.out.print("The amount you are seeling: ");
-					
-					System.out.print("The currency you are buying: ");
+					System.out.println("The currency you are buying: ");
 					
 					System.out.println("The exchange rate is " + " and you will get");
 					break;
 					
 				case 8:
-					//Exchange reader = new Exchange(null, null, 0.0);
+					Exchange reader = new Exchange(null);
 					reader.Newexchange("C:/Users/Pedro Nunez/Downloads/exchange-rate.csv");
 					Scanner Keyboard = new Scanner(System.in);
 	
@@ -159,7 +164,8 @@ public class MainBank {
 					
 					System.out.print("Exchange Rate: ");
 					reader.setExchangeRate(Keyboard.nextDouble());
-					//System.out.println(reader.toString());
+					
+					System.out.println(reader.toString());
 					if(reader.getCode() == "CAD") {
 					double newcode = 1/reader.getExchangeRate();
 					System.out.printf("%.2f",newcode);
