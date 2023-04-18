@@ -65,8 +65,6 @@ public class Bank {
 	public static void closeAccount(int accountNumber) throws NoSuchAccountException {
 		lookup(accountNumber).close();
 	}
-
-	
 	public static double getBalance(int accountNumber) throws NoSuchAccountException {
 		return lookup(accountNumber).getBalance();
 	}
@@ -76,6 +74,18 @@ public class Bank {
 
 	public static String getcurrency(int accountnumber) throws NoSuchAccountException {
 		return lookup(accountnumber).getAccountHolder().getCurrency();
+	}
+	public static int getaccountNumber(int accountnumber)throws NoSuchAccountException {
+		return lookup(accountnumber).getAccountNumber();
+	}
+	public static String getfirstname(int accountnumber)throws NoSuchAccountException {
+		return lookup(accountnumber).getAccountHolder().getFirstName();
+	}
+	public static String getlastname(int accountnumber)throws NoSuchAccountException {
+		return lookup(accountnumber).getAccountHolder().getLastName();
+	}
+	public static String getSNN(int accountnumber)throws NoSuchAccountException {
+		return lookup(accountnumber).getAccountHolder().getSSN();
 	}
 	
 	public static void listAccounts(OutputStream out) throws IOException{

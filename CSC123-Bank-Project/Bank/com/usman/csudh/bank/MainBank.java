@@ -121,6 +121,20 @@ public class MainBank {
 					break;
 
 				case 5:
+					try {
+						int accountNumber=ui.readInt(MSG_ACCOUNT_NUMBER);
+						Bank.lookup(accountNumber);
+						System.out.println("Account number: "+Bank.getaccountNumber(accountNumber));
+						System.out.println("Name: "+Bank.getfirstname(accountNumber)+" "+Bank.getlastname(accountNumber));
+						System.out.println("SNN: "+Bank.getSNN(accountNumber));
+						System.out.println("Currency: "+Bank.getcurrency(accountNumber));
+						System.out.println("Currency balance: "+Bank.getBalance(accountNumber));
+						System.out.println("USD balance: "+Bank.getUSDBalance(accountNumber)+"\n");
+						
+					}catch(NoSuchAccountException c) {
+						this.handleException(ui, c);
+					}
+					
 					break;
 				case 6:
 					//find account, deposit money and print result
