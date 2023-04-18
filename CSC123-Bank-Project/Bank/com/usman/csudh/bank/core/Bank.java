@@ -107,30 +107,4 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 	
-	/*public static Map<String, Double> Newexchange(String Newfilepath, String Code, double ExchangeRate) throws IOException {
-		 //Map<String, Double> exchangeRates = new HashMap<String, Double>();
-	
-		 try {
-		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
-			 String line = "";
-			 while((line = br.readLine()) !=null) {
-			 String[] data = line.split(",");
-			  Code = data[0].trim();
-			 String Name = data[1].trim();
-			 ExchangeRate = Double.parseDouble(data[2]);
-			 exchangeRates.put(Code, ExchangeRate);
-			 
-			 }
-			 
-		 }catch(FileNotFoundException b) {
-			 System.out.println("Currency file could not be loaded, Currency Coversion Service and Foreign Currency accounts are not avaliable ");
-		 }catch(IOException e) {
-			 e.printStackTrace();
-		 }
-		 
-	return exchangeRates;
-
-		 }*/
-	
-	
 }

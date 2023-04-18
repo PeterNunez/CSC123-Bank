@@ -12,40 +12,18 @@ import java.util.Scanner;
 public class Exchange {
 	
 	private String Code;
-	//private String Name;
-	//private double exchangeRate;
 	
 	public Exchange() {
 		super();
-		//Code = this.Code;
-		//Name = this.Name;
-		//exchangeRate = this.exchangeRate;
 	}
 
 	public String getCode() {
 		return Code;
 	}
 
-	//public String getName() {
-	//	return Name;
-	//}
-
-	//public double getExchangeRate() {
-		//return exchangeRate;
-	//}
-
 	public void setCode(String Code) {
 		this.Code = Code;
 	}
-
-	//public void setName(String Name) {
-		//this.Name = Name;
-	//}
-	
-	//public void setExchangeRate(double exchangeRate) {
-		//this.exchangeRate = exchangeRate;
-	//}
-	
 	
 	public String toString() {
 		return  Code;
@@ -66,12 +44,14 @@ public class Exchange {
 		 try {
 		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
 			 String line = "";
+			 //remember to fix later if you have time 
+			 //for some reason the key value can't be found 
 			 while((line = br.readLine()) !=null) {
 		     String [] data = line.split(",");
+		     code = data[0].trim();
+		     String Name = data[1].trim();
+		     ExchangeRate = Double.parseDouble(data[2]);
 			 exchangeRates.put(code, ExchangeRate);
-			 //code.equalsIgnoreCase(data[0].toString());
-				// String Name = data[1].trim();
-		     // ExchangeRate = Double.parseDouble(data[2]);
 			 
 			System.out.println("1: "+code+" , "+ExchangeRate);
 			 
