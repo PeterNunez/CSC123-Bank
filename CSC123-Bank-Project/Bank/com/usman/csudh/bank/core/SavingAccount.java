@@ -2,8 +2,8 @@ package com.usman.csudh.bank.core;
 public class SavingAccount extends Account{
 	private static final long serialVersionUID = 1L;
 
-	public SavingAccount(Customer customer, Exchange exchange) {
-		super("Saving", customer, exchange);
+	public SavingAccount(Customer customer) {
+		super("Saving", customer);
 	}
 
 

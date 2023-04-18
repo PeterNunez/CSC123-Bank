@@ -12,12 +12,12 @@ import java.util.Scanner;
 public class Exchange {
 	
 	private String Code;
-	private String Name;
-	private double exchangeRate;
+	//private String Name;
+	//private double exchangeRate;
 	
-	public Exchange(String Code) {
+	public Exchange() {
 		super();
-		Code = this.Code;
+		//Code = this.Code;
 		//Name = this.Name;
 		//exchangeRate = this.exchangeRate;
 	}
@@ -26,44 +26,56 @@ public class Exchange {
 		return Code;
 	}
 
-	public String getName() {
-		return Name;
-	}
+	//public String getName() {
+	//	return Name;
+	//}
 
-	public double getExchangeRate() {
-		return exchangeRate;
-	}
+	//public double getExchangeRate() {
+		//return exchangeRate;
+	//}
 
 	public void setCode(String Code) {
 		this.Code = Code;
 	}
 
-	public void setName(String Name) {
-		this.Name = Name;
-	}
+	//public void setName(String Name) {
+		//this.Name = Name;
+	//}
 	
-	public void setExchangeRate(double exchangeRate) {
-		this.exchangeRate = exchangeRate;
-	}
+	//public void setExchangeRate(double exchangeRate) {
+		//this.exchangeRate = exchangeRate;
+	//}
 	
-	@Override
+	
 	public String toString() {
 		return  Code;
 	}
+     public boolean equals(Object obj) {
+		
+		Exchange other=(Exchange)obj;
+		return this.Code.equalsIgnoreCase(other.getCode());
+				
+	}
 
-	public HashMap<String, Double> Newexchange(String Newfilepath) throws IOException {
+	
+	public HashMap<String, Double> Newexchange(String code, double ExchangeRate) throws IOException {
 		 HashMap<String, Double> exchangeRates = new HashMap<>();
 	
+		 String Newfilepath = "C:/Users/Pedro Nunez/Downloads/exchange-rate.csv";
+		 
 		 try {
 		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
 			 String line = "";
 			 while((line = br.readLine()) !=null) {
-			 String[] data = line.split(",");
-			 Code = data[0];
-			 Name = data[1];
-			 exchangeRate = Double.parseDouble(data[2]);
-			 exchangeRates.put(Code, exchangeRate);
+		     String [] data = line.split(",");
+			 exchangeRates.put(code, ExchangeRate);
+			 //code.equalsIgnoreCase(data[0].toString());
+				// String Name = data[1].trim();
+		     // ExchangeRate = Double.parseDouble(data[2]);
 			 
+			System.out.println("1: "+code+" , "+ExchangeRate);
+			 
+			 break;
 			 }
 			 
 		 }catch(FileNotFoundException b) {

@@ -21,10 +21,10 @@ public class MainBank {
 	public static final String MSG_ACCOUNT_CLOSED = "%nAccount number %s has been closed, balance is %s%n%n";
 	public static final String MSG_ACCOUNT_NOT_FOUND = "%nAccount number %s not found! %n%n";
 	
-	public static final String MSG_ACCOUNT_CURRENCY ="Account Currency:  ";
-	public static final String MSG_CODE = "Currency Code:  ";
+	public static final String MSG_ACCOUNT_CURRENCY ="Account Currency: ";
+	public static final String MSG_CODE = "The currency you are selling:  ";
 	public static final String MSG_NAME ="Name:  ";
-	public static final String MSG_EXCHANGERATE = "Exchange Rate:  ";
+	public static final String MSG_EXCHANGERATE = "The currency you are buying:  ";
 	
 	public static final String MSG_FIRST_NAME = "Enter first name:  ";
 	public static final String MSG_LAST_NAME = "Enter last name:  ";
@@ -38,8 +38,8 @@ public class MainBank {
 	
 
 	//Declare main menu and prompt to accept user input
-	public static final String[] menuOptions = { "Open Checking Account%n","Open Saving Account%n", "List Accounts%n","View Statement%n", "Deposit Funds%n", "Withdraw Funds%n",
-			"Currency Conversion%n","Foreign Exchange%n","Close an Account%n", "Exit%n" };
+	public static final String[] menuOptions = { "Open Checking Account%n","Open Saving Account%n", "List Accounts%n","View Statement%n","Show Account Information%n","Deposit Funds%n", "Withdraw Funds%n",
+			"Currency Conversion%n","Close an Account%n", "Exit%n" };
 	public static final String MSG_PROMPT = "%nEnter choice: ";
 
 	
@@ -64,9 +64,9 @@ public class MainBank {
 	
 	
 	//The core of the program responsible for providing user experience.
-	public void run() {
+	public void run()  {
 
-		Account acc;
+		//Account acc;
 		int option = 0;
 
 		UIManager ui = new UIManager(this.in,this.out,menuOptions,MSG_PROMPT);
@@ -74,6 +74,12 @@ public class MainBank {
 
 			do {
 				option = ui.getMainOption(); //Render main menu
+				Account acc;
+				Exchange reader = new Exchange();
+				//reader.Newexchange("C:/Users/Pedro Nunez/Downloads/exchange-rate.csv",null, 0.0);
+				
+				Scanner Keyboard = new Scanner(System.in);
+				
 
 				switch (option) {
 				case 1:
@@ -82,7 +88,8 @@ public class MainBank {
 					ui.print(MSG_ACCOUNT_OPENED,
 							new Object[] { Bank.openCheckingAccount(ui.readToken(MSG_FIRST_NAME),
 									ui.readToken(MSG_LAST_NAME), ui.readToken(MSG_SSN),
-									ui.readDouble(MSG_ACCOUNT_OD_LIMIT), ui.readToken(MSG_ACCOUNT_CURRENCY)).getAccountNumber() });
+								 ui.readToken(MSG_ACCOUNT_CURRENCY),ui.readDouble(MSG_ACCOUNT_OD_LIMIT)).getAccountNumber()});
+					
 					break;
 				case 2:
 					
@@ -98,6 +105,7 @@ public class MainBank {
 					
 					//Get bank to print list of accounts to the output stream provided as method arguemnt
 					Bank.listAccounts(this.out);
+					
 					break;
 					
 				case 4:
@@ -113,6 +121,8 @@ public class MainBank {
 					break;
 
 				case 5:
+					break;
+				case 6:
 					//find account, deposit money and print result
 					
 					try {
@@ -126,7 +136,7 @@ public class MainBank {
 					}
 					break;
 					
-				case 6:
+				case 7:
 					//find account, withdraw money and print result
 					try {
 						int accountNumber=ui.readInt(MSG_ACCOUNT_NUMBER);
@@ -140,38 +150,25 @@ public class MainBank {
 					}
 					break;
 					
-				case 7:
-					Scanner s = new Scanner(System.in);
-					System.out.println("The currency you are selling: ");
-					
-					System.out.println("The amount you are seeling: ");
-					
-					System.out.println("The currency you are buying: ");
-					
-					System.out.println("The exchange rate is " + " and you will get");
-					break;
-					
 				case 8:
-					Exchange reader = new Exchange(null);
-					reader.Newexchange("C:/Users/Pedro Nunez/Downloads/exchange-rate.csv");
-					Scanner Keyboard = new Scanner(System.in);
-	
-					System.out.print("Currency Code: ");
-					reader.setCode(Keyboard.nextLine());
+					try { 
+					int accountnumber=ui.readInt(MSG_ACCOUNT_NUMBER);
+					Bank.lookup(accountnumber);
+					System.out.println("The currency you are selling: "+Bank.getcurrency(accountnumber));
 					
-					System.out.print("Name: ");
-					reader.setName(Keyboard.nextLine());
+					System.out.print("The amount you are selling: ");
+					double is = Keyboard.nextDouble();
 					
-					System.out.print("Exchange Rate: ");
-					reader.setExchangeRate(Keyboard.nextDouble());
+					System.out.print("The currency you are buying: ");
+					String word = Keyboard.next();
 					
-					System.out.println(reader.toString());
-					if(reader.getCode() == "CAD") {
-					double newcode = 1/reader.getExchangeRate();
-					System.out.printf("%.2f",newcode);
-					}else {
-					double newcode2 = reader.getExchangeRate()*0.7317;
-					System.out.printf("%.2f\n",newcode2);
+					
+					System.out.println("\nThe exchange rate is "+is+" and you will get "+word.toUpperCase()+" "+Bank.getUSDBalance(accountnumber)+"\n");
+
+					reader.Newexchange(Bank.getcurrency(accountnumber), is);
+					
+					}catch(NoSuchAccountException e) {
+						this.handleException(ui, e);
 					}
 					break;
 

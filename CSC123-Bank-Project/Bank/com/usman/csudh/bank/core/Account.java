@@ -12,15 +12,14 @@ public class Account implements Serializable {
 	private String accountName;
 	private Customer accountHolder;
 	private ArrayList<Transaction> transactions;
-    private static Exchange NEWexchange;
+    private Exchange newexchange;
 	
 	private boolean open=true;
 	private int accountNumber;
 
-	protected Account(String name, Customer customer, Exchange exchange) {
+	protected Account(String name, Customer customer) {
 		accountName=name;
 		accountHolder=customer;
-		NEWexchange=exchange;
 		transactions=new ArrayList<Transaction>();
 		accountNumber=UniqueCounter.nextValue();
 		
@@ -35,11 +34,11 @@ public class Account implements Serializable {
 		return accountHolder;
 	}
 
-	
-	public Exchange getNEWexchange() {
-		return NEWexchange;
+	public Exchange getNewexchange() {
+		return newexchange;
 	}
 
+	//converting USD into CAD
 	public double getBalance() {
 		double workingBalance=0;
 		
@@ -47,8 +46,15 @@ public class Account implements Serializable {
 			if(t.getType()==Transaction.CREDIT)workingBalance+=t.getAmount();
 			else workingBalance-=t.getAmount();
 		}
-		
+		//double newone = workingBalance/0.7317;
 		return workingBalance;
+	}
+	//converting CAD into USD
+	public double getUSDBalance() {
+		double newbalance = getBalance()*0.7317;
+		
+		
+		return newbalance;
 	}
 	
 	
@@ -89,7 +95,7 @@ public class Account implements Serializable {
 	}
 
 	public String toString() {
-		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+ " : "+NEWexchange.toString()+" : "+getBalance()+" : "+(open?"Account Open":"Account Closed");
+		String aName=accountNumber+"("+accountName+")"+" : "+accountHolder.toString()+" : "+getBalance()+" : "+getUSDBalance()+" : "+(open?"Account Open":"Account Closed");
 		return aName;
 	}
 	 

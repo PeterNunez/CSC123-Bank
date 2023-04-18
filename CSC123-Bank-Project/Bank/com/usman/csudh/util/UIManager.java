@@ -76,8 +76,8 @@ public class UIManager {
 		return this.scanner.nextLine();
 	}
 
-	public  String readToken(String msg)throws IOException {
-		print(msg, null);
+	public  String readToken(String object)throws IOException {
+		print(object, null);
 		return this.scanner.next();
 	}
 

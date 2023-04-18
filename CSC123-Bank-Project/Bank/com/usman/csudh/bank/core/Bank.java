@@ -1,6 +1,8 @@
 package com.usman.csudh.bank.core;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
@@ -9,32 +11,32 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+//import com.usman.csudh.bank.Objects;
+
 public class Bank {
 	
 	private static Map<Integer,Account> accounts=new TreeMap<Integer,Account>();
-	private static Map<String, Double> exchangeRates = new HashMap<String, Double>();
+	//private static Map<String, Double> exchangeRates = new HashMap<String, Double>();
 	
 	
 	
-	public static Exchange exchange(String Code) throws FileNotFoundException {
-		Exchange e = new Exchange(Code);
+	//public static Exchange exchange(String Code) throws FileNotFoundException {
+	//	Exchange e = new Exchange(Code);
 		//exchangeRates.put(Code);
-		return e;
-	}
+	//	return e;
+	//}
 	
-	public static Account openCheckingAccount(String firstName, String lastName, String ssn, double overdraftLimit,String Code ) {
-		Customer c=new Customer(firstName,lastName, ssn);
-		Exchange e = new Exchange(Code);
-		Account a=new CheckingAccount(c,overdraftLimit, e);
+	public static Account openCheckingAccount(String firstName, String lastName, String ssn, String currency, double overdraftLimit ) {
+		Customer c=new Customer(firstName,lastName, ssn,currency);
+		Account a=new CheckingAccount(c,overdraftLimit);
 		accounts.put(a.getAccountNumber(), a);
 		return a;
 		
 	}
 	
-	public static Account openSavingAccount(String firstName, String lastName, String ssn, String Code) {
-		Customer c=new Customer(firstName,lastName, ssn);
-		Exchange e = new Exchange(Code);
-		Account a=new SavingAccount(c, e);
+	public static Account openSavingAccount(String firstName, String lastName, String ssn, String currency) {
+		Customer c=new Customer(firstName,lastName, ssn, currency);
+		Account a=new SavingAccount(c);
 		accounts.put(a.getAccountNumber(), a);
 		return a;
 		
@@ -68,7 +70,14 @@ public class Bank {
 	public static double getBalance(int accountNumber) throws NoSuchAccountException {
 		return lookup(accountNumber).getBalance();
 	}
+	public static double getUSDBalance(int accountNumber)throws NoSuchAccountException {
+		return lookup(accountNumber).getUSDBalance();
+	}
 
+	public static String getcurrency(int accountnumber) throws NoSuchAccountException {
+		return lookup(accountnumber).getAccountHolder().getCurrency();
+	}
+	
 	public static void listAccounts(OutputStream out) throws IOException{
 		
 		out.write((byte)10);
@@ -88,6 +97,30 @@ public class Bank {
 		lookup(accountNumber).printTransactions(out);
 	}
 	
+	/*public static Map<String, Double> Newexchange(String Newfilepath, String Code, double ExchangeRate) throws IOException {
+		 //Map<String, Double> exchangeRates = new HashMap<String, Double>();
+	
+		 try {
+		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
+			 String line = "";
+			 while((line = br.readLine()) !=null) {
+			 String[] data = line.split(",");
+			  Code = data[0].trim();
+			 String Name = data[1].trim();
+			 ExchangeRate = Double.parseDouble(data[2]);
+			 exchangeRates.put(Code, ExchangeRate);
+			 
+			 }
+			 
+		 }catch(FileNotFoundException b) {
+			 System.out.println("Currency file could not be loaded, Currency Coversion Service and Foreign Currency accounts are not avaliable ");
+		 }catch(IOException e) {
+			 e.printStackTrace();
+		 }
+		 
+	return exchangeRates;
+
+		 }*/
 	
 	
 }

@@ -25,6 +25,8 @@ public class Customer implements Serializable{
 	private String firstName;
 	private String lastName;
 	private String ssn;
+	private String currency;
+	
 	
 	
 	/**********************************
@@ -36,10 +38,11 @@ public class Customer implements Serializable{
 	 **********************************/
 	
 
-	public Customer(String fName, String lName, String ssn) {
+	public Customer(String fName, String lName, String ssn,String Cency) {
 		setFirstName(fName);
 		setLastName(lName);
 		setSSN(ssn);
+		setCurrency(Cency);
 		
 	}
 	
@@ -49,6 +52,7 @@ public class Customer implements Serializable{
 		this.firstName=p.getFirstName();
 		this.lastName=p.getLastName();
 		this.ssn=p.getSSN();
+		this.currency=p.getCurrency();
 	}	
 	
 	/**********************************
@@ -91,9 +95,14 @@ public class Customer implements Serializable{
 	}
 	
 
+	public String getCurrency() {
+		return currency;
+	}
 
-	
-	
+	public void setCurrency(String currency) {
+		this.currency = currency.toUpperCase();
+	}
+
 	/**
 	 * 
 	 * toString() method is inherited by the super class Object. This returns a String representation of the object. 
@@ -103,7 +112,7 @@ public class Customer implements Serializable{
 	@Override
 	public String toString() {
 		
-		return firstName+" : "+lastName+" : "+ssn; 
+		return firstName+" : "+lastName+" : "+ssn+" : "+currency; 
 	}
 	
 	/**
@@ -117,7 +126,8 @@ public class Customer implements Serializable{
 		Customer other=(Customer)obj;
 		return this.firstName.equalsIgnoreCase(other.getFirstName())
 				&&this.lastName.equalsIgnoreCase(other.getLastName())
-						&&this.ssn.equalsIgnoreCase(other.getSSN());
+						&&this.ssn.equalsIgnoreCase(other.getSSN())
+								&&this.currency.equalsIgnoreCase(other.getCurrency());
 	}
 	
 	
