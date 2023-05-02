@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.net.http.*;
 
 public class Exchange {
 	
@@ -39,7 +40,8 @@ public class Exchange {
 	public HashMap<String, Double> Newexchange(String code, double ExchangeRate) throws IOException {
 		 HashMap<String, Double> exchangeRates = new HashMap<>();
 	
-		 String Newfilepath = "C:/Users/Pedro Nunez/Downloads/exchange-rate.csv";
+		// String Newfilepath = "C:/Users/Pedro Nunez/Downloads/exchange-rate.csv";
+		 String Newfilepath = "http://www.usman.cloud/banking/exchange-rate.csv";
 		 
 		 try {
 		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
@@ -67,5 +69,6 @@ public class Exchange {
 	return exchangeRates;
 
 		 }
+	
 	}
 
