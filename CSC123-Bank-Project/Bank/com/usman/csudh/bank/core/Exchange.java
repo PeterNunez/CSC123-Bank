@@ -40,14 +40,12 @@ public class Exchange {
 	public HashMap<String, Double> Newexchange(String code, double ExchangeRate) throws IOException {
 		 HashMap<String, Double> exchangeRates = new HashMap<>();
 	
-		// String Newfilepath = "C:/Users/Pedro Nunez/Downloads/exchange-rate.csv";
 		 String Newfilepath = "http://www.usman.cloud/banking/exchange-rate.csv";
 		 
 		 try {
 		  BufferedReader br = new BufferedReader(new FileReader(Newfilepath)); 
-			 String line = "";
-			 //remember to fix later if you have time 
-			 //for some reason the key value can't be found 
+			 String line = " ";
+			 
 			 while((line = br.readLine()) !=null) {
 		     String [] data = line.split(",");
 		     code = data[0].trim();
